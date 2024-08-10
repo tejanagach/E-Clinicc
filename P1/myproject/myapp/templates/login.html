@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('../static/img/IMG2.jpg'); /* Replace with the correct path to IMG2.jpg */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            width: 360px;
+            height: 500px;
+            margin: auto;
+            background-color: rgba(193, 193, 193, 0.646);
+            border-color: rgba(255, 255, 255, 0.603);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .login-image {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 7px;
+            border: 1px solid rgb(2, 1, 1);
+            border-radius: 6px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            height: 35px;
+            margin-top: 20px;
+            border: none;
+            background-color: rgb(51, 202, 202);
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        p {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="login-box">
+    <img class="login-image" src="../static/img/IMG_20230913_132444_601_edited-removebg-preview (1).png" alt="Login Image">
+    <h1>Login</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+
+        <input type="submit" value="Login">
+    </form>
+    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up Here</a></p>
+</div>
+</body>
+</html>

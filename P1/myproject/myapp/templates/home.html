@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 1em;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .slider {
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+            margin-bottom: 20px;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            background: url('../static/img/IMG2.jpg') center/cover no-repeat;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide p {
+            font-size: 48px; /* Adjust the font size as needed */
+            color: #fff;
+            font-weight: bold; /* Make the text bold for a dramatic effect */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for emphasis */
+        }
+
+        .schedule {
+            background-color: #fff;
+            padding: 40px 0;
+        }
+
+        .schedule-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .single-schedule {
+            margin: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .single-schedule:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .inner {
+            padding: 20px;
+        }
+
+        .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .single-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .single-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .single-content a {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .single-content a:hover {
+            background-color: #f39c12;
+        }
+
+        .welcome-back {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .welcome-text {
+            color: #3498db; /* Change the color to blue or any other color you prefer */
+        }
+
+        #footer {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            background-color: #3498db; /* You can change the background color to match your design */
+            color: #fff; /* Text color for the footer */
+            box-sizing: border-box;
+        }
+
+
+        #footer {
+            position: relative;
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            box-sizing: border-box;
+            clear: both; /* Clear floats */
+        }
+
+
+        .footer-top {
+            padding: 30px 0;
+        }
+
+        .single-footer h2 {
+            color: #fff;
+        }
+
+        .single-footer p {
+            color: #ddd;
+        }
+
+
+        .social li a {
+            color: #ddd;
+        }
+
+
+        .f-link ul li a {
+            color: #ddd;
+        }
+
+
+        .newsletter-inner input {
+            color: #333;
+        }
+
+        .newsletter-inner button {
+            background-color: #f39c12;
+            color: #fff;
+        }
+
+
+        .copyright {
+            padding: 15px 0;
+            background-color: #2c3e50;
+            color: #ddd;
+            text-align: center;
+        }
+        .get-quote button {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .get-quote button:hover {
+        background-color: black;
+        color: white;
+    }
+    .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            transition: background-color 0.3s; /* Added transition */
+            border-radius: 8px; /* Added rounded corners */
+            overflow: hidden; /* Hide overflow for rounded corners */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #ddd; /* Added border for separation */
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none; /* Remove border for the last item */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #3498db; /* Change the color when hovered */
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Additional styles for header layout */
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* End of Footer Area */
+    </style>
+</head>
+<body>
+<header>
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="../static/img/IMG_20230913_132444_601_edited-removebg-preview (1).png" alt="Logo" style="width: 150px; height: 80px;">
+            </a>
+        </div>
+
+        <div class="header-inner">
+            <nav>
+                <a href="{% url 'home' %}">Home</a>
+                <div class="dropdown">
+                    <a href="#">Services</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'upload_details' %}">Upload Prescription</a>
+                        <a href="{% url 'history' %}">View Prescriptions</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="get-quote">
+                <button onclick="openModal('signup')" style="background-color: black; color: white;">LogOut</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="slider">
+        <div class="slide">
+            <p class="welcome-text">Welcome Back!</p>
+        </div>
+    </div>
+
+    <section class="schedule">
+        <div class="container">
+            <div class="schedule-inner">
+                <div class="single-schedule first">
+                    <div class="inner">
+                        <div class="icon">
+                            <i class="fa fa-ambulance"></i>
+                        </div>
+                        <div class="single-content">
+                            <h4>Upload</h4>
+                            <p>Upload your prescription here.</p>
+                            <a href="{% url 'upload_details' %}">UPLOAD<i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-schedule middle">
+                    <div class="inner">
+                        <div class="icon">
+                            <i class="icofont-prescription"></i>
+                        </div>
+                        <div class="single-content">
+                            <h4>View</h4>
+                            <p>View all your prescriptions here.</p>
+                            <a href="{% url 'history' %}">VIEW<i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-schedule last">
+                    <div class="inner">
+                        <div class="icon">
+                            <i class="icofont-ui-clock"></i>
+                        </div>
+                        <div class="single-content">
+                            <h4>Medicine Timings</h4>
+                            <p>View the timings of your Medicine</p>
+                            <a href="{% url 'medicine_reminders' %}">TIMETABLE<i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer id="footer" class="footer">
+        <!-- Footer Top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer about-us">
+                            <h2>About Us</h2>
+                            <p>We are E-Clinic, a user-friendly web service to store all your medical files in an efficient way to keep track of your medical history without any loss of data.</p>
+                            <!-- Social -->
+                            <ul class="social">
+                                <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                                <li><a href="#"><i class="icofont-google-plus"></i></a></li>
+                                <li><a href="#"><i class="icofont-twitter"></i></a></li>
+                                <li><a href="#"><i class="icofont-vimeo"></i></a></li>
+                                <li><a href="#"><i class="icofont-pinterest"></i></a></li>
+                            </ul>
+                            <!-- End Social -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer f-link">
+                            <h2>Quick Links</h2>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
+                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <div class="single-footer newsletter">
+                            <h2>Newsletter</h2>
+                            <p>Subscribe to our newsletter to get more updates on the medical industry.</p>
+                            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                <input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Your email address'" required="" type="email">
+                                <button class="button"><i class="icofont icofont-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Footer Top -->
+        <!-- Copyright -->
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-12">
+                        <div class="copyright-content">
+                            <p>© Copyright |  All Rights Reserved by <a href="#" target="_blank">E-Clinic.com</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Copyright -->
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- Modals -->
+    <!-- You can keep the existing modal code for Sign Up/Sign In -->
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>

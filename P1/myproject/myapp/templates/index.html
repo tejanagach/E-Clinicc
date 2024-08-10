@@ -1,0 +1,284 @@
+P Harishith, [23-11-2023 16:05]
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload User Details</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <style>
+               /* Add this to your existing styles or in a separate CSS file */
+
+.file-input-wrapper {
+    position: relative;
+}
+
+.custom-file-input {
+    display: inline-block;
+    padding: 12px 20px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    z-index: 1; /* Ensure the button is visually above the file input */
+}
+
+.custom-file-input:hover {
+    background-color: #0056b3;
+}
+
+.file-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    position: absolute;
+    left: 150px; /* Adjust this value to your preference for positioning */
+    top: 17px; /* Adjust this value to your preference for positioning */
+    z-index: 0; /* Ensure the file info is visually behind the styled button */
+}
+
+/* Hide the default file input and style the custom file input */
+.custom-file-input + input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+                    /* Add this to your existing styles or in a separate CSS file */
+
+        /* Datepicker */
+        .datepicker {
+            position: relative;
+            width: 100%;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+        .datepicker-input {
+            width: calc(100% - 36px);
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .datepicker-input:focus {
+            border-color: #007bff;
+        }
+
+        .datepicker-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #007bff;
+        }
+
+P Harishith, [23-11-2023 16:05]
+select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center/15px 15px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Datepicker */
+        .datepicker {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            background-color: #fff;
+            transition: border-color 0.3s;
+        }
+
+        .datepicker:focus {
+            border-color: #007bff;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload User Details</h1>
+        <form method="post" action="{% url 'upload_details' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="hospital_name">Hospital Name:</label>
+                <input type="text" name="hospital_name" id="hospital_name">
+            </div>
+            <div class="form-group">
+                <label for="hospital_address">Hospital Address:</label>
+                <textarea name="hospital_address" id="hospital_address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="doctor_name">Doctor Name:</label>
+                <input type="text" name="doctor_name" id="doctor_name">
+            </div>
+            <div class="form-group">
+                <label for="disease">Disease:</label>
+                <input type="text" name="disease" id="disease">
+            </div>
+            <div class="form-group">
+                <label for="fees">Fees:</label>
+                <input type="number" name="fees" id="fees" step="0.01" min="0">
+            </div>
+            <div class="form-group">
+                <label for="image_type">Image Type:</label>
+                <select name="image_type" id="image_type">
+                    <option value="Xray">X-ray</option>
+                    <option value="Prescription">Prescription</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <div class="datepicker">
+                    <input type="text" name="date" id="date" class="datepicker-input" required>
+                    <span class="datepicker-icon">&#128197;</span>
+                </div>
+            </div>
+            
+            <div class="form-group file-input-wrapper">
+                <label for="image">Image:</label>
+                <label class="custom-file-input" for="file-upload">
+                    Choose File
+                </label>
+                <span class="file-info" id="file-info">No file chosen</span>
+                <input type="file" name="image" id="file-upload" accept="image/*" style="display: none;" required>
+            </div>
+            
+            
+            
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+
+P Harishith, [23-11-2023 16:05]
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+            });
+        });
+    </script>
+</body>
+</html>

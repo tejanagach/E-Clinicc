@@ -1,0 +1,100 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medicine Reminders</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #3498db; /* Blue color */
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db; /* Blue color */
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+            color: #3498db; /* Blue color */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add additional styling as needed */
+
+    </style>
+</head>
+<body>
+    <h1>Medicine Reminders</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="medicine_name">Medicine Name:</label>
+        <input type="text" name="medicine_name" required><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" required><br>
+
+        <label for="reminder_datetime">Reminder Date and Time:</label>
+        <input type="datetime-local" name="reminder_datetime" required><br>
+
+        <button type="submit">Add Reminder</button>
+    </form>
+
+    <h2>Your Reminders:</h2>
+    <ul>
+        {% for reminder in reminders %}
+            <li>{{ reminder.medicine_name }} ({{ reminder.quantity }}) - {{ reminder.reminder_datetime }}</li>
+        {% empty %}
+            <li>No reminders added yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

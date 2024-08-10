@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 1em;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-picture {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-details {
+            padding: 20px;
+        }
+
+        .profile-details h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .profile-details p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        #footer {
+            position: relative;
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            box-sizing: border-box;
+            clear: both;
+            padding: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="../static/img/IMG_20230913_132444_601_edited-removebg-preview (1).png" alt="Logo" style="width: 150px; height: 80px;">
+            </a>
+        </div>
+
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'my_profile' %}">My Profile</a>
+            <div class="dropdown">
+                <a href="#">Services</a>
+                <div class="dropdown-content">
+                    <a href="{% url 'upload_details' %}">Upload Prescription</a>
+                    <a href="{% url 'history' %}">View Prescriptions</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <div class="profile-picture">
+                <!-- Replace the source with the actual path to your profile picture -->
+                <img src="../static/img/profile_picture.jpg" alt="Profile Picture">
+            </div>
+            <div class="profile-details">
+                <h2>Your Name</h2>
+                <p>Email: your.email@example.com</p>
+                <p>Phone: +1 234 567 890</p>
+                <p>Address: Your Address, City, Country</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Area -->
+    <footer id="footer">
+        <p>© Copyright | All Rights Reserved by <a href="#" target="_blank">E-Clinic.com</a></p>
+    </footer>
+    <!--/ End Footer Area -->
+</body>
+</html>

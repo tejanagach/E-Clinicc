@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details History</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Add this to your existing styles or in a separate CSS file */
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align at the top */
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0; /* Add margin for spacing */
+        }
+
+        .user-details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .user-details-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            flex: 0 0 calc(30% - 20px); /* Adjust the width as needed with margin included */
+        }
+
+        .user-details-item img {
+            display: block;
+            margin-top: 15px;
+            max-width: 100%;
+            border-radius: 5px;
+            cursor: pointer; /* Add cursor style to indicate it's clickable */
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .user-details-item {
+                padding: 15px;
+                flex: 0 0 calc(100% - 20px); /* Full width on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>User Details History</h1>
+    <ul class="user-details-list">
+        {% for detail in details %}
+            <li class="user-details-item">
+                <strong>Name:</strong> {{ detail.name }}<br>
+                <strong>Email:</strong> {{ detail.email }}<br>
+                <strong>Hospital Name:</strong> {{ detail.hospital_name }}<br>
+                <strong>Hospital Address:</strong> {{ detail.hospital_address }}<br>
+                <strong>Doctor Name:</strong> {{ detail.doctor_name }}<br>
+                <strong>Disease:</strong> {{ detail.disease }}<br>
+                <strong>Fees:</strong> {{ detail.fees }}<br>
+                <strong>Image Type:</strong> {{ detail.get_image_type_display }}<br>
+                <strong>Date:</strong> {{ detail.date }}<br>
+                <a href="{{ detail.image.url }}" target="_blank">
+                    <img src="{{ detail.image.url }}" alt="{{ detail.name }}" width="100">
+                </a>
+            </li>
+        {% empty %}
+            <li>No details uploaded yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
